@@ -18,6 +18,20 @@ async function conexionDB() {
     }
 }
 
+app.get('/crear-producto/:codigo/:nombre/:precio/:cantidad', async (req, res) => {
+    let codigo = req.params.codigo
+    let nombre = req.params.nombre
+    let precio = req.params.precio
+    let cantidad = req.params.cantidad
+    await Producto.create({
+        codigo: codigo,
+        nombre: nombre,
+        precio: precio,
+        cantidad: cantidad
+    })
+    res.send(`Producto creado satisfactoriamente`)
+})
+
 
 app.get('/listar-productos/:codigo', async (req, res) => {
     let code = req.params.codigo
